@@ -1,0 +1,129 @@
+[gd_scene load_steps=9 format=3 uid="uid://cm34a68yfr5if"]
+
+[ext_resource type="FontFile" uid="uid://dci6y6xdgx2t" path="res://Assets/Fonts/monofonto rg.otf" id="1_n31i0"]
+
+[sub_resource type="GDScript" id="GDScript_wc1i0"]
+script/source = "extends Control
+
+@onready var progress_bar = $ProgressBar
+@onready var progress_label = $ProgressBar/Label
+@onready var setting_label = $Label
+
+func _process(delta):
+	progress_label.text = str(ceil(progress_bar.value))
+
+func _on_minus_btn_button_down():
+	progress_bar.value -= 1
+
+
+func _on_plus_btn_button_down():
+	progress_bar.value += 1
+
+
+func _on_progress_bar_gui_input(event):
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			progress_bar.value = (event.position.x) / (progress_bar.size.x) * progress_bar.max_value
+	if event is InputEventScreenDrag:
+		progress_bar.value = (event.position.x) / (progress_bar.size.x) * progress_bar.max_value
+
+
+func set_setting_label(txt: String):
+	setting_label.text = txt
+
+func set_progress_bar_value(value: int, min_value: int = 0, max_value: int = 100):
+	progress_bar.max_value = max_value
+	progress_bar.min_value = min_value
+	progress_bar.value = value
+	
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvdal"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2lqu"]
+bg_color = Color(0.960784, 0.960784, 0.960784, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oj6g2"]
+font = ExtResource("1_n31i0")
+font_color = Color(0.423529, 0.423529, 0.423529, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5y1he"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ij31v"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_m5sln"]
+font = ExtResource("1_n31i0")
+font_size = 20
+
+[node name="SettingProgressOption" type="Control"]
+custom_minimum_size = Vector2(278, 62)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 278.0
+offset_bottom = 62.0
+mouse_filter = 2
+script = SubResource("GDScript_wc1i0")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 30.0
+offset_right = 246.0
+offset_bottom = 61.0
+theme_override_styles/background = SubResource("StyleBoxFlat_yvdal")
+theme_override_styles/fill = SubResource("StyleBoxFlat_r2lqu")
+show_percentage = false
+
+[node name="Label" type="Label" parent="ProgressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -11.5
+offset_right = 27.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "100"
+label_settings = SubResource("LabelSettings_oj6g2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MinusBtn" type="Button" parent="."]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 0
+offset_top = 30.0
+offset_right = 31.0
+offset_bottom = 61.0
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("1_n31i0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5y1he")
+text = "-"
+
+[node name="PlusBtn" type="Button" parent="."]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 0
+offset_left = 246.0
+offset_top = 30.0
+offset_right = 277.0
+offset_bottom = 61.0
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("1_n31i0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ij31v")
+text = "+"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Sensitivity"
+label_settings = SubResource("LabelSettings_m5sln")
+vertical_alignment = 1
+
+[connection signal="gui_input" from="ProgressBar" to="." method="_on_progress_bar_gui_input"]
+[connection signal="button_down" from="MinusBtn" to="." method="_on_minus_btn_button_down"]
+[connection signal="button_down" from="PlusBtn" to="." method="_on_plus_btn_button_down"]

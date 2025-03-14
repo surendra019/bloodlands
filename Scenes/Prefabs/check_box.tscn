@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://do8iknep5eigb"]
+
+[ext_resource type="FontFile" uid="uid://dci6y6xdgx2t" path="res://Assets/Fonts/monofonto rg.otf" id="1_5yiy5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_en3da"]
+
+[sub_resource type="GDScript" id="GDScript_pr6f8"]
+script/source = "extends CheckBox
+
+# sets the label of the option.
+func set_setting_label(txt: String):
+	text = txt
+
+# sets the value of the checkbox (true or false)
+func set_value(a: bool):
+	button_pressed = a
+"
+
+[node name="CheckBox" type="CheckBox"]
+offset_right = 88.0
+offset_bottom = 33.0
+theme_override_constants/h_separation = 20
+theme_override_fonts/font = ExtResource("1_5yiy5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_en3da")
+text = "Option"
+script = SubResource("GDScript_pr6f8")

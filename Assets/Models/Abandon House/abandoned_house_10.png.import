@@ -1,0 +1,39 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://56e6hkjf4r4x"
+path.s3tc="res://.godot/imported/abandoned_house_10.png-60924d028222d7233ae3b82301127768.s3tc.ctex"
+path.etc2="res://.godot/imported/abandoned_house_10.png-60924d028222d7233ae3b82301127768.etc2.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "e7c785c55ad5c236bf1ba4ac7e68a00a"
+}
+
+[deps]
+
+source_file="res://Assets/Models/Abandon House/abandoned_house_10.png"
+dest_files=["res://.godot/imported/abandoned_house_10.png-60924d028222d7233ae3b82301127768.s3tc.ctex", "res://.godot/imported/abandoned_house_10.png-60924d028222d7233ae3b82301127768.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=8
+roughness/src_normal="res://Assets/Models/Abandon House/abandoned_house_11.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

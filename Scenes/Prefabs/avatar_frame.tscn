@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba3sfigd4ys67"]
+
+[ext_resource type="Texture2D" uid="uid://bxb3dpffmm0o7" path="res://Assets/Avatar Frames/simple.png" id="1_oa2l1"]
+[ext_resource type="Texture2D" uid="uid://bgd6to8yr6fjp" path="res://icon.svg" id="2_dc4yi"]
+
+[sub_resource type="GDScript" id="GDScript_7gf35"]
+script/source = "extends TextureRect
+
+# sets the avatar frame for the profile.
+func set_avatar_frame(txtre: String):
+	self.texture = load(txtre)
+
+
+# sets the avatar image for the profile.
+func set_avatar(txtre: String):
+	self.texture = load(txtre)
+"
+
+[node name="AvatarFrame" type="TextureRect"]
+custom_minimum_size = Vector2(60, 60)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_oa2l1")
+expand_mode = 1
+stretch_mode = 4
+script = SubResource("GDScript_7gf35")
+
+[node name="Avatar" type="TextureRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_dc4yi")
+expand_mode = 1
+stretch_mode = 4

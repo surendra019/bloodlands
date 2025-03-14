@@ -1,0 +1,117 @@
+[gd_scene load_steps=19 format=3 uid="uid://dxijfbycskdym"]
+
+[ext_resource type="Texture2D" uid="uid://delx5yxuk35na" path="res://Assets/Textures/rocky_terrain_02_1k/textures/rocky_terrain_02_diff_1k.jpg" id="1_inaka"]
+[ext_resource type="Script" path="res://Scripts/Screens/game_screen.gd" id="1_th2jk"]
+[ext_resource type="Texture2D" uid="uid://d4n03ul5r23g1" path="res://Assets/Textures/rocky_terrain_02_1k/textures/rocky_terrain_02_arm_1k.jpg" id="2_vp4to"]
+[ext_resource type="Texture2D" uid="uid://cp3y2c3t7c3cj" path="res://Assets/Textures/gravelly_sand_1k/textures/gravelly_sand_diff_1k.jpg" id="3_54hew"]
+[ext_resource type="Texture2D" uid="uid://cx15u2ln37ahk" path="res://Assets/Textures/gravelly_sand_1k/textures/gravelly_sand_arm_1k.jpg" id="4_mjeuy"]
+[ext_resource type="PackedScene" uid="uid://csuc61my4kidh" path="res://Scenes/MapComponents/house.tscn" id="5_cs1me"]
+[ext_resource type="PackedScene" uid="uid://dwd7vilqeduhn" path="res://Scenes/player.tscn" id="5_drtrc"]
+[ext_resource type="PackedScene" uid="uid://bxg6lc1ny5dc0" path="res://Scenes/MapComponents/abandon_house.tscn" id="7_ph3i6"]
+[ext_resource type="PackedScene" uid="uid://cj6uv2hclv7k5" path="res://Scenes/MapComponents/shanty_mansion.tscn" id="8_2m3yh"]
+
+[sub_resource type="Gradient" id="Gradient_6o84c"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s2wgo"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h3mvl"]
+seamless = true
+color_ramp = SubResource("Gradient_6o84c")
+noise = SubResource("FastNoiseLite_s2wgo")
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_6vb7u"]
+_shader_parameters = {
+"blend_sharpness": 0.87,
+"height_blending": true,
+"macro_variation1": Color(1, 1, 1, 1),
+"macro_variation2": Color(1, 1, 1, 1),
+"noise1_angle": 0.0,
+"noise1_offset": Vector2(0.5, 0.5),
+"noise1_scale": 0.04,
+"noise2_scale": 0.076,
+"noise3_scale": 0.225,
+"noise_texture": SubResource("NoiseTexture2D_h3mvl"),
+"vertex_normals_distance": 128.0
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b5pup"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 85.0
+distance_fade_max_distance = 75.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_qjejf"]
+material_override = SubResource("StandardMaterial3D_b5pup")
+generated_type = 1
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_5gy2r"]
+name = "rocky_terrain_02_diff_1k"
+albedo_texture = ExtResource("1_inaka")
+normal_texture = ExtResource("2_vp4to")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_soajn"]
+name = "gravelly_sand_diff_1k"
+id = 1
+albedo_texture = ExtResource("3_54hew")
+normal_texture = ExtResource("4_mjeuy")
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_epxqr"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_qjejf")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_5gy2r"), SubResource("Terrain3DTextureAsset_soajn")])
+
+[node name="GameScreen" type="Node3D"]
+script = ExtResource("1_th2jk")
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="Terrain3D" type="Terrain3D" parent="Map"]
+data_directory = "res://Data"
+material = SubResource("Terrain3DMaterial_6vb7u")
+assets = SubResource("Terrain3DAssets_epxqr")
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="Map" instance=ExtResource("5_drtrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.6324, 20.1336, 6.52581)
+
+[node name="House3" parent="Map" instance=ExtResource("5_cs1me")]
+transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, -110.387, 52.5361, -114.51)
+
+[node name="House5" parent="Map" instance=ExtResource("5_cs1me")]
+transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, -110.387, 52.5361, -174.579)
+
+[node name="House6" parent="Map" instance=ExtResource("5_cs1me")]
+transform = Transform3D(15.4327, 0, 9.26449, 0, 18, 0, -9.26449, 0, 15.4327, 330.642, 52.8675, -238.195)
+
+[node name="House4" parent="Map" instance=ExtResource("5_cs1me")]
+transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, -110.387, 51.3747, -52.2443)
+
+[node name="AbandonHouse" parent="Map" instance=ExtResource("7_ph3i6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 510.628, 112.601, 228.195)
+
+[node name="ShantyMansion" parent="Map" instance=ExtResource("8_2m3yh")]
+transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, -223.08, 49.4687, -34.4687)
+
+[node name="ShantyMansion2" parent="Map" instance=ExtResource("8_2m3yh")]
+transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, -226.357, 49.2289, -76.0002)
+
+[node name="ShantyMansion3" parent="Map" instance=ExtResource("8_2m3yh")]
+transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, -226.357, 49.2289, -121.03)
+
+[node name="Rocks" type="Node3D" parent="Map"]

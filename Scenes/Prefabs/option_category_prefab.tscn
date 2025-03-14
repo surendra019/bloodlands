@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdbcpnjk1j0g1"]
+
+[ext_resource type="FontFile" uid="uid://dci6y6xdgx2t" path="res://Assets/Fonts/monofonto rg.otf" id="1_oglwv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ttv2u"]
+bg_color = Color(0.156863, 0.156863, 0.156863, 0.666667)
+border_width_left = 2
+
+[sub_resource type="GDScript" id="GDScript_qmxto"]
+script/source = "extends SoundButton
+
+signal selected(option)
+
+@onready var label = $Label
+
+var id: String
+enum STATE {UNSELECTED, SELECTED}
+var current_state: STATE
+
+# initialize the option label and variable.
+func initialize(text: String):
+	id = text
+	label.text = text
+
+# sets the styles and color according to the state.
+func set_state(state: STATE):
+	current_state = state
+	var style = get(\"theme_override_styles/panel\").duplicate()
+	var label_settings = label.get(\"label_settings\").duplicate()
+	
+	if state == STATE.UNSELECTED:
+		style.set(\"border_color\", Color.WHITE)
+		label_settings.set(\"font_color\", Color.WHITE)
+	else:
+		style.set(\"border_color\", Color(0.655, 0.518, 0.059))
+		label_settings.set(\"font_color\", Color(0.655, 0.518, 0.059))
+	
+	set(\"theme_override_styles/panel\", style)
+	label.set(\"label_settings\", label_settings)
+	
+	if state == STATE.SELECTED:
+		return id
+
+func _gui_input(event):
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			set_state(STATE.SELECTED)
+			selected.emit(self)
+			
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_d2s57"]
+font = ExtResource("1_oglwv")
+font_size = 25
+
+[node name="OptionCategoryPrefab" type="Panel"]
+custom_minimum_size = Vector2(0, 60)
+offset_right = 237.0
+offset_bottom = 46.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ttv2u")
+script = SubResource("GDScript_qmxto")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_right = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "General"
+label_settings = SubResource("LabelSettings_d2s57")
+vertical_alignment = 1

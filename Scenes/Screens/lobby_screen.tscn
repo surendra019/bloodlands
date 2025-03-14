@@ -1,0 +1,129 @@
+[gd_scene load_steps=14 format=3 uid="uid://cn3jpfrr57lb7"]
+
+[ext_resource type="PackedScene" uid="uid://c0eeahkrbcn4m" path="res://Assets/Lobby/old_battle_arena.glb" id="1_7cye1"]
+[ext_resource type="Script" path="res://Scripts/Screens/lobby_screen.gd" id="1_q1ur0"]
+[ext_resource type="PackedScene" uid="uid://dwd7vilqeduhn" path="res://Scenes/player.tscn" id="2_w6ojg"]
+[ext_resource type="FontFile" uid="uid://dci6y6xdgx2t" path="res://Assets/Fonts/monofonto rg.otf" id="4_7l68f"]
+[ext_resource type="PackedScene" uid="uid://ba3sfigd4ys67" path="res://Scenes/Prefabs/avatar_frame.tscn" id="4_h3fd5"]
+[ext_resource type="PackedScene" uid="uid://boflhk66eop36" path="res://Scenes/Prefabs/button_prefab.tscn" id="5_5trnn"]
+[ext_resource type="Texture2D" uid="uid://1rok2123spod" path="res://Assets/GUI/settings icon.png" id="6_fui1h"]
+[ext_resource type="Texture2D" uid="uid://byyv5fbvwacta" path="res://Assets/GUI/emote icon.png" id="6_y8ixo"]
+
+[sub_resource type="Environment" id="Environment_ip8ye"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_egqx0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q237q"]
+bg_color = Color(0.654902, 0.517647, 0.0588235, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkrrt"]
+bg_color = Color(0.498039, 0.392157, 0.0352941, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_h4pty"]
+font = ExtResource("4_7l68f")
+
+[node name="LobbyScreen" type="Node3D"]
+script = ExtResource("1_q1ur0")
+
+[node name="LobbyEnvironment" parent="." instance=ExtResource("1_7cye1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.218403, 9.62801, 1.55783)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ip8ye")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.175432, 0.636976, -0.750657, -0.103846, 0.746255, 0.65751, 0.978999, 0.193301, -0.0647696, 0, 19.9144, 0)
+shadow_enabled = true
+
+[node name="PlayerContainer" type="Node3D" parent="."]
+
+[node name="Player" parent="PlayerContainer" instance=ExtResource("2_w6ojg")]
+transform = Transform3D(0.330943, 0, -0.943651, 0, 1, 0, 0.943651, 0, 0.330943, 0, 2.43726, -0.458304)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.397826, 0.187776, -0.898039, -0.00893987, 0.979578, 0.200865, 0.917417, -0.0718811, 0.39138, -4.99654, 5.40272, 1.53786)
+fov = 65.0
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartGameBtn" type="Button" parent="GUI/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = -114.0
+offset_right = 220.0
+offset_bottom = -27.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_7l68f")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_egqx0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_q237q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wkrrt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_q237q")
+text = "START"
+
+[node name="ProfileContainer" type="HBoxContainer" parent="GUI/Control"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 22.0
+offset_right = 203.0
+offset_bottom = 82.0
+
+[node name="AvatarFrame" parent="GUI/Control/ProfileContainer" instance=ExtResource("4_h3fd5")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GUI/Control/ProfileContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Username"
+label_settings = SubResource("LabelSettings_h4pty")
+horizontal_alignment = 2
+
+[node name="SettingsBtn" parent="GUI/Control" instance=ExtResource("5_5trnn")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -63.0
+offset_top = 31.0
+offset_right = -23.0
+offset_bottom = 71.0
+grow_horizontal = 0
+_btn_texture = ExtResource("6_fui1h")
+
+[node name="EmoteBtn" parent="GUI/Control" instance=ExtResource("5_5trnn")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = -84.0
+offset_right = -26.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+_btn_texture = ExtResource("6_y8ixo")
+
+[connection signal="pressed" from="GUI/Control/SettingsBtn" to="." method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="GUI/Control/EmoteBtn" to="." method="_on_emote_btn_pressed"]

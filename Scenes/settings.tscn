@@ -1,0 +1,130 @@
+[gd_scene load_steps=10 format=3 uid="uid://dknnospe8ruyy"]
+
+[ext_resource type="FontFile" uid="uid://dci6y6xdgx2t" path="res://Assets/Fonts/monofonto rg.otf" id="1_4qpw5"]
+[ext_resource type="Script" path="res://Scripts/settings.gd" id="1_341g8"]
+[ext_resource type="Texture2D" uid="uid://dflbndqn3nfe5" path="res://Assets/bg.webp" id="2_oixor"]
+[ext_resource type="PackedScene" uid="uid://boflhk66eop36" path="res://Scenes/Prefabs/button_prefab.tscn" id="2_x5vte"]
+[ext_resource type="Texture2D" uid="uid://h2jk21nhygxw" path="res://Assets/GUI/cross icon.png" id="3_qlg13"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cg6gx"]
+bg_color = Color(0.156863, 0.156863, 0.156863, 0.666667)
+border_width_bottom = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_skg1a"]
+font = ExtResource("1_4qpw5")
+font_size = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qxwo"]
+bg_color = Color(0.2, 0.2, 0.2, 0.666667)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dtwgn"]
+bg_color = Color(0.156863, 0.156863, 0.156863, 0.666667)
+border_width_left = 2
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_341g8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_oixor")
+expand_mode = 1
+
+[node name="Heading" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 52.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cg6gx")
+
+[node name="Label" type="Label" parent="Heading"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -435.0
+offset_top = -15.0
+offset_right = -62.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Settings"
+label_settings = SubResource("LabelSettings_skg1a")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ClosetBtn" parent="Heading" instance=ExtResource("2_x5vte")]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -20.0
+offset_right = -9.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+_btn_texture = ExtResource("3_qlg13")
+_background_visible = false
+
+[node name="Body" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qxwo")
+
+[node name="Panel" type="Panel" parent="Body"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -223.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dtwgn")
+
+[node name="OptionCategoryContainer" type="VBoxContainer" parent="Body/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Body"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -516.0
+offset_top = -267.5
+offset_right = 322.0
+offset_bottom = 267.5
+grow_horizontal = 2
+grow_vertical = 2
+vertical_scroll_mode = 3
+
+[connection signal="pressed" from="Heading/ClosetBtn" to="." method="_on_closet_btn_pressed"]

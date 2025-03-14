@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://boflhk66eop36"]
+
+[ext_resource type="Texture2D" uid="uid://1rok2123spod" path="res://Assets/GUI/settings icon.png" id="1_foii1"]
+
+[sub_resource type="GDScript" id="GDScript_7ufql"]
+script/source = "@tool
+extends SoundButton
+
+signal pressed
+
+@export var _btn_texture: Texture
+@export var _background_visible: bool = true
+
+# called every frame.
+func _process(delta):
+	if _btn_texture:
+		$TextureRect.texture = _btn_texture
+	self_modulate.a = int(_background_visible)
+		
+# gui input for custom pressed signal.
+func _on_gui_input(event):
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			pressed.emit()
+"
+
+[node name="ButtonPrefab" type="Panel"]
+custom_minimum_size = Vector2(40, 40)
+offset_right = 60.0
+offset_bottom = 60.0
+script = SubResource("GDScript_7ufql")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_foii1")
+expand_mode = 1
+stretch_mode = 4
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

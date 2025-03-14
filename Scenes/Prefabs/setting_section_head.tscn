@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwor54xyk36yb"]
+
+[ext_resource type="FontFile" uid="uid://dci6y6xdgx2t" path="res://Assets/Fonts/monofonto rg.otf" id="1_0bcxb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1dwa"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 2
+border_color = Color(0.654902, 0.517647, 0.0588235, 1)
+
+[sub_resource type="GDScript" id="GDScript_ahmlr"]
+script/source = "extends Panel
+
+
+@onready var label = $Label
+
+
+func set_label(txt: String):
+	label.text = txt
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_g0xt3"]
+font = ExtResource("1_0bcxb")
+font_size = 25
+
+[node name="SettingSectionHead" type="Panel"]
+custom_minimum_size = Vector2(0, 57)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 57.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m1dwa")
+script = SubResource("GDScript_ahmlr")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 78.0
+offset_bottom = 15.0
+grow_vertical = 2
+text = "Shadow"
+label_settings = SubResource("LabelSettings_g0xt3")
+horizontal_alignment = 1
