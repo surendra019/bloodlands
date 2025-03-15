@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dxijfbycskdym"]
+[gd_scene load_steps=31 format=3 uid="uid://dxijfbycskdym"]
 
 [ext_resource type="Texture2D" uid="uid://delx5yxuk35na" path="res://Assets/Textures/rocky_terrain_02_1k/textures/rocky_terrain_02_diff_1k.jpg" id="1_inaka"]
 [ext_resource type="Script" path="res://Scripts/Screens/game_screen.gd" id="1_th2jk"]
@@ -9,6 +9,16 @@
 [ext_resource type="PackedScene" uid="uid://dwd7vilqeduhn" path="res://Scenes/player.tscn" id="5_drtrc"]
 [ext_resource type="PackedScene" uid="uid://bxg6lc1ny5dc0" path="res://Scenes/MapComponents/abandon_house.tscn" id="7_ph3i6"]
 [ext_resource type="PackedScene" uid="uid://cj6uv2hclv7k5" path="res://Scenes/MapComponents/shanty_mansion.tscn" id="8_2m3yh"]
+[ext_resource type="PackedScene" uid="uid://dcr8pkqlowio3" path="res://Scenes/MapComponents/rock_1.tscn" id="10_wki1f"]
+[ext_resource type="PackedScene" uid="uid://dhafp42maik86" path="res://Scenes/MapComponents/rock_3.tscn" id="11_tqbap"]
+[ext_resource type="PackedScene" uid="uid://do2yh5tbe7ylp" path="res://Scenes/MapComponents/rock_2.tscn" id="12_jng1g"]
+[ext_resource type="Shader" path="res://Shaders/water.gdshader" id="13_mbgpv"]
+[ext_resource type="Texture2D" uid="uid://dswkpi6on4uo0" path="res://Assets/Water/normal_A.png" id="14_7l3l6"]
+[ext_resource type="Texture2D" uid="uid://dm2a2koayp2eq" path="res://Assets/Water/normal_B.png" id="15_nppah"]
+[ext_resource type="Texture2D" uid="uid://dq6yn0pdb2w3h" path="res://Assets/Water/uv_example.png" id="16_efspl"]
+[ext_resource type="PackedScene" uid="uid://b1lyeyiajayb5" path="res://Scenes/MapComponents/broken_building.tscn" id="17_304rb"]
+[ext_resource type="PackedScene" uid="uid://dml88ohgu7sv4" path="res://Scenes/MapComponents/shack.tscn" id="18_qkd7d"]
+[ext_resource type="PackedScene" uid="uid://c27gafsj7lexx" path="res://Scenes/MapComponents/streetcar.tscn" id="19_exoqq"]
 
 [sub_resource type="Gradient" id="Gradient_6o84c"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -75,6 +85,57 @@ normal_texture = ExtResource("4_mjeuy")
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_qjejf")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_5gy2r"), SubResource("Terrain3DTextureAsset_soajn")])
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qvl3x"]
+render_priority = 0
+shader = ExtResource("13_mbgpv")
+shader_parameter/wave_1 = Vector4(0.3, 4, 0.2, 0.6)
+shader_parameter/wave_2 = Vector4(-0.26, -0.19, 0.01, 0.47)
+shader_parameter/wave_3 = Vector4(-7.67, 5.63, 0.1, 0.38)
+shader_parameter/wave_4 = Vector4(-0.42, -1.63, 0.1, 0.28)
+shader_parameter/wave_5 = Vector4(1.66, 0.07, 0.15, 1.81)
+shader_parameter/wave_6 = Vector4(1.2, 1.14, 0.01, 0.33)
+shader_parameter/wave_7 = Vector4(-1.6, 7.3, 0.11, 0.73)
+shader_parameter/wave_8 = Vector4(-0.42, -1.63, 0.15, 1.52)
+shader_parameter/time_factor = 2.5
+shader_parameter/noise_zoom = 2.0
+shader_parameter/noise_amp = 1.0
+shader_parameter/base_water_color = Color(0, 0.380232, 0.710169, 1)
+shader_parameter/fresnel_water_color = Color(5.0056e-06, 0.190422, 0.557062, 1)
+shader_parameter/deep_water_color = Color(0.21284, 0.439922, 1, 1)
+shader_parameter/shallow_water_color = Color(0.567622, 0.708996, 1, 1)
+shader_parameter/beers_law = 0.5
+shader_parameter/depth_offset = -1.2
+shader_parameter/near = 7.0
+shader_parameter/far = 10000.0
+shader_parameter/edge_texture_scale = 3.5
+shader_parameter/edge_texture_offset = 1.0
+shader_parameter/edge_texture_speed = 0.1
+shader_parameter/edge_foam_intensity = 2.0
+shader_parameter/edge_fade_start = -3.0
+shader_parameter/edge_fade_end = 6.6
+shader_parameter/peak_height_threshold = 1.0
+shader_parameter/peak_color = Vector3(1, 1, 1)
+shader_parameter/peak_intensity = 1.0
+shader_parameter/foam_intensity = 1.0
+shader_parameter/foam_scale = 1.0
+shader_parameter/metallic = 0.6
+shader_parameter/roughness = 0.045
+shader_parameter/uv_scale_text_a = 0.1
+shader_parameter/uv_speed_text_a = Vector2(0.42, 0.3)
+shader_parameter/uv_scale_text_b = 0.6
+shader_parameter/uv_speed_text_b = Vector2(0.15, 0.1)
+shader_parameter/normal_strength = 1.0
+shader_parameter/uv_sampler_scale = 0.3
+shader_parameter/blend_factor = 0.28
+shader_parameter/normalmap_a = ExtResource("14_7l3l6")
+shader_parameter/normalmap_b = ExtResource("15_nppah")
+shader_parameter/uv_sampler = ExtResource("16_efspl")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hso3g"]
+size = Vector2(10000, 10000)
+subdivide_width = 100
+subdivide_depth = 100
+
 [node name="GameScreen" type="Node3D"]
 script = ExtResource("1_th2jk")
 
@@ -114,4 +175,97 @@ transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, -226.357
 [node name="ShantyMansion3" parent="Map" instance=ExtResource("8_2m3yh")]
 transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, -226.357, 49.2289, -121.03)
 
-[node name="Rocks" type="Node3D" parent="Map"]
+[node name="Rock1" parent="Map" instance=ExtResource("10_wki1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5934, 50.4763, -218.359)
+
+[node name="Rock2" parent="Map" instance=ExtResource("10_wki1f")]
+transform = Transform3D(0.909708, 0, 1.62668, -0.24718, 1.15746, 2.12129, -0.333667, -0.857442, 2.86352, -21.6266, 49.872, -221.167)
+
+[node name="Rock16" parent="Map" instance=ExtResource("10_wki1f")]
+transform = Transform3D(1.9541, 0, 0, 0, 1, 0, 0, 0, 1.49394, -112.234, 80.565, -278.904)
+
+[node name="Rock17" parent="Map" instance=ExtResource("10_wki1f")]
+transform = Transform3D(1.97935, 0, 1.45113, -0.537818, 1.49777, 1.89236, -0.725997, -1.10955, 2.55449, -112.298, 79.9607, -283.099)
+
+[node name="Rock18" parent="Map" instance=ExtResource("10_wki1f")]
+transform = Transform3D(0.879964, 0.485284, 1.11967, 0, 0.839402, -0.811973, -1.74476, 0.244752, 0.564704, -378.525, 86.4878, -224.616)
+
+[node name="Rock19" parent="Map" instance=ExtResource("10_wki1f")]
+transform = Transform3D(0.0862238, -0.104734, 3.48633, -0.0568575, 1.86028, 0.200058, -2.17336, -0.0528221, 0.13308, -381.992, 88.2608, -226.291)
+
+[node name="Rock20" parent="Map" instance=ExtResource("10_wki1f")]
+transform = Transform3D(0.844018, 0.228, 1.30364, 0.248936, 0.942397, -0.462057, -1.74476, 0.244752, 0.564704, -464.799, 55.1737, -116.571)
+
+[node name="Rock21" parent="Map" instance=ExtResource("10_wki1f")]
+transform = Transform3D(0.0987863, -0.626718, 3.28732, -0.0301427, 1.75467, 1.17815, -2.17336, -0.0528221, 0.13308, -468.626, 55.8935, -118.247)
+
+[node name="Rock3" parent="Map" instance=ExtResource("10_wki1f")]
+transform = Transform3D(1.02537, 0, 1.17846, -0.278606, -1.63527, 1.53678, -0.376089, 1.21141, 2.0745, 71.8648, 74.2229, -239.006)
+
+[node name="Rock4" parent="Map" instance=ExtResource("10_wki1f")]
+transform = Transform3D(-0.876272, 0.236211, 1.75433, 0.112513, -1.92845, 0.861219, -0.699949, -0.605703, -2.05782, 89.2896, 88.9612, -223.468)
+
+[node name="Rock5" parent="Map" instance=ExtResource("11_tqbap")]
+transform = Transform3D(0.705521, 0.361204, 0.60973, -0.455716, 0.890125, 0, -0.542736, -0.277864, 0.792609, 51.3543, 44.7952, -65.2344)
+
+[node name="Rock6" parent="Map" instance=ExtResource("11_tqbap")]
+transform = Transform3D(0.705521, 0.361205, 0.60973, -0.697881, 0.204426, 0.68642, 0.123293, -0.909803, 0.396304, 116.835, 62.7338, -139.919)
+
+[node name="Rock7" parent="Map" instance=ExtResource("11_tqbap")]
+transform = Transform3D(0.705521, 0.361205, 0.60973, -0.647585, 0.678076, 0.347631, -0.287877, -0.640113, 0.712307, 116.835, 46.4661, 237.656)
+
+[node name="Rock12" parent="Map" instance=ExtResource("11_tqbap")]
+transform = Transform3D(0.332886, -0.158627, 0.929529, -0.647585, 0.678075, 0.347631, -0.685435, -0.717671, 0.122997, -25.1345, 64.473, 536.073)
+
+[node name="Rock13" parent="Map" instance=ExtResource("11_tqbap")]
+transform = Transform3D(1.22297, 0.459413, -0.455005, -0.0529699, 2.67233, 0.660628, 0.399647, -1.05166, 1.47993, -259.467, 50.5132, 319.295)
+
+[node name="Rock14" parent="Map" instance=ExtResource("11_tqbap")]
+transform = Transform3D(0.105128, -0.00603521, 1.67772, -0.111612, 2.89727, 0.0154433, -1.27854, -0.253417, 0.136602, -259.467, 41.4316, 275.684)
+
+[node name="Rock15" parent="Map" instance=ExtResource("11_tqbap")]
+transform = Transform3D(-1.19868, 0.444709, 0.0124944, 0.0810991, 0.433354, 0.347727, 0.205283, 2.42554, -0.0644166, -252.449, 94.7474, 263.617)
+
+[node name="Rock8" parent="Map" instance=ExtResource("11_tqbap")]
+transform = Transform3D(0.705521, 0.361205, 0.60973, -0.647585, 0.678076, 0.347631, -0.287877, -0.640113, 0.712307, 474.086, 108.381, 254.955)
+
+[node name="Rock9" parent="Map" instance=ExtResource("12_jng1g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 376.542, 49.207, 0)
+
+[node name="Rock10" parent="Map" instance=ExtResource("12_jng1g")]
+transform = Transform3D(2.31205, 0, 0.650205, 0, 1, 0, -0.629558, 0, 2.38788, 376.542, 49.207, -3.81023)
+
+[node name="Rock11" parent="Map" instance=ExtResource("12_jng1g")]
+transform = Transform3D(2.31205, 0, 0.650205, 0, 1, 0, -0.629558, 0, 2.38788, 531.999, 75.9326, 71.5375)
+
+[node name="Water" type="MeshInstance3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.6926, 0)
+material_override = SubResource("ShaderMaterial_qvl3x")
+mesh = SubResource("PlaneMesh_hso3g")
+
+[node name="BrokenBuilding" parent="Map" instance=ExtResource("17_304rb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -484.492, 46.9556, 39.899)
+
+[node name="BrokenBuilding2" parent="Map" instance=ExtResource("17_304rb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -437.313, 46.9556, 102.961)
+
+[node name="BrokenBuilding3" parent="Map" instance=ExtResource("17_304rb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -385.6, 46.9556, 167.563)
+
+[node name="Shack" parent="Map" instance=ExtResource("18_qkd7d")]
+transform = Transform3D(0.947902, 0, 0.318562, 0, 1, 0, -0.318562, 0, 0.947902, 0, 49.909, -46.507)
+
+[node name="Shack2" parent="Map" instance=ExtResource("18_qkd7d")]
+transform = Transform3D(-0.661626, 0, -0.749834, 0, 1, 0, 0.749834, 0, -0.661626, 304.969, 49.909, 18.4727)
+
+[node name="Shack3" parent="Map" instance=ExtResource("18_qkd7d")]
+transform = Transform3D(-0.947902, 0, -0.318562, 0, 1, 0, 0.318562, 0, -0.947902, 332.428, 49.909, -190.32)
+
+[node name="Shack4" parent="Map" instance=ExtResource("18_qkd7d")]
+transform = Transform3D(-0.980188, 0, 0.198068, 0, 1, 0, -0.198068, 0, -0.980188, 26.4227, 49.909, -329.643)
+
+[node name="Streetcar" parent="Map" instance=ExtResource("19_exoqq")]
+transform = Transform3D(2.59808, 0, 1.5, 0, 3, 0, -1.5, 0, 2.59808, -340.304, 51.0052, 219.507)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.694558, -0.719437, 0, 0.719437, -0.694558, 0, 282.324, 0)
