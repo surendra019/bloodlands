@@ -1,0 +1,39 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://dk0xtxfy7xvot"
+path.s3tc="res://.godot/imported/old_building_1.png-b0e206b8c6332808ddde1014c5ef6437.s3tc.ctex"
+path.etc2="res://.godot/imported/old_building_1.png-b0e206b8c6332808ddde1014c5ef6437.etc2.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "132bbf9978e131835c9273a3cea06725"
+}
+
+[deps]
+
+source_file="res://Assets/Models/Old building/old_building_1.png"
+dest_files=["res://.godot/imported/old_building_1.png-b0e206b8c6332808ddde1014c5ef6437.s3tc.ctex", "res://.godot/imported/old_building_1.png-b0e206b8c6332808ddde1014c5ef6437.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://Assets/Models/Old building/old_building_1.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
