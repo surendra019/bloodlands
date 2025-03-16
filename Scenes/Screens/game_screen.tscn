@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cp3y2c3t7c3cj" path="res://Assets/Textures/gravelly_sand_1k/textures/gravelly_sand_diff_1k.jpg" id="3_54hew"]
 [ext_resource type="Texture2D" uid="uid://cx15u2ln37ahk" path="res://Assets/Textures/gravelly_sand_1k/textures/gravelly_sand_arm_1k.jpg" id="4_mjeuy"]
 [ext_resource type="PackedScene" uid="uid://csuc61my4kidh" path="res://Scenes/MapComponents/house.tscn" id="5_cs1me"]
-[ext_resource type="PackedScene" uid="uid://dwd7vilqeduhn" path="res://Scenes/player.tscn" id="5_drtrc"]
 [ext_resource type="PackedScene" uid="uid://bxg6lc1ny5dc0" path="res://Scenes/MapComponents/abandon_house.tscn" id="7_ph3i6"]
 [ext_resource type="PackedScene" uid="uid://cj6uv2hclv7k5" path="res://Scenes/MapComponents/shanty_mansion.tscn" id="8_2m3yh"]
 [ext_resource type="PackedScene" uid="uid://dcr8pkqlowio3" path="res://Scenes/MapComponents/rock_1.tscn" id="10_wki1f"]
@@ -19,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://b1lyeyiajayb5" path="res://Scenes/MapComponents/broken_building.tscn" id="17_304rb"]
 [ext_resource type="PackedScene" uid="uid://dml88ohgu7sv4" path="res://Scenes/MapComponents/shack.tscn" id="18_qkd7d"]
 [ext_resource type="PackedScene" uid="uid://c27gafsj7lexx" path="res://Scenes/MapComponents/streetcar.tscn" id="19_exoqq"]
+[ext_resource type="PackedScene" uid="uid://dwd7vilqeduhn" path="res://Scenes/player_light.tscn" id="19_tgu1q"]
 
 [sub_resource type="Gradient" id="Gradient_6o84c"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -148,9 +148,6 @@ assets = SubResource("Terrain3DAssets_epxqr")
 top_level = true
 metadata/_edit_lock_ = true
 
-[node name="Player" parent="Map" instance=ExtResource("5_drtrc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.6324, 20.1336, 6.52581)
-
 [node name="House3" parent="Map" instance=ExtResource("5_cs1me")]
 transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, -110.387, 52.5361, -114.51)
 
@@ -269,3 +266,6 @@ transform = Transform3D(2.59808, 0, 1.5, 0, 3, 0, -1.5, 0, 2.59808, -340.304, 51
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.694558, -0.719437, 0, 0.719437, -0.694558, 0, 282.324, 0)
+
+[node name="Player" parent="." instance=ExtResource("19_tgu1q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 52.8994, 0)

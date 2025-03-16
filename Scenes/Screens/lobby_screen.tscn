@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c0eeahkrbcn4m" path="res://Assets/Lobby/old_battle_arena.glb" id="1_7cye1"]
 [ext_resource type="Script" path="res://Scripts/Screens/lobby_screen.gd" id="1_q1ur0"]
-[ext_resource type="PackedScene" uid="uid://dwd7vilqeduhn" path="res://Scenes/player.tscn" id="2_w6ojg"]
+[ext_resource type="PackedScene" uid="uid://dwd7vilqeduhn" path="res://Scenes/player_light.tscn" id="2_w6ojg"]
 [ext_resource type="FontFile" uid="uid://dci6y6xdgx2t" path="res://Assets/Fonts/monofonto rg.otf" id="4_7l68f"]
 [ext_resource type="PackedScene" uid="uid://ba3sfigd4ys67" path="res://Scenes/Prefabs/avatar_frame.tscn" id="4_h3fd5"]
 [ext_resource type="PackedScene" uid="uid://boflhk66eop36" path="res://Scenes/Prefabs/button_prefab.tscn" id="5_5trnn"]

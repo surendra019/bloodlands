@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 
 @onready var animation_player = $male/AnimationPlayer
+@onready var camera_3d: Camera3D = $CameraPivot/SpringArm3D/Camera3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
